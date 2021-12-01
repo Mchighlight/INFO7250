@@ -7,7 +7,7 @@ const {checkPlan, checkPlanPatch} = require('../controllers/validation');
 const {verifyToken} = require("../middleware/auth");
 
 router.post('/createES', plans.createES);
-// router.get('/getES', plans.getES);
+router.get('/getES', plans.getES);
 router.get('/token', plans.getToken);
 router.get('/plan/:objectId',verifyToken(), plans.getPlanById);
 router.post('/plan',verifyToken(), checkPlan(), plans.createPlan);

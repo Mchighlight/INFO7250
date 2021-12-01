@@ -13,17 +13,40 @@ const clientES = new elasticsearch.Client({
 
 exports.createES = async (req, res) => {
 // callback API
+    const plan = {
+        'planCostShares' : JSON.stringify(request.planCostShares),
+        'linkedPlanServices' : JSON.stringify(request.linkedPlanServices),
+        '_org' : request._org,
+        'objectId' : request.objectId,
+        'objectType' : request.objectType,
+        'planType' : request.planType,
+        'creationDate': request.creationDate,
+    };
+
     clientES.index({
-        index: 'products',
-        body: {
-            "id": req.body.id,
-            "name": req.body.name,
-            "price": req.body.price,
-            "description": req.body.description,
-        }
+        index: 'plan',
+        body: plan
     })
     .then(response => {
         return res.status(200).json({"message": "Indexing successful"})
+    })
+    .catch(err => {
+        return res.status(500).json({"message": "Error"})
+    })
+}
+
+exports.getES = async (req, res) => {
+    const searchText = req.query.text
+    clientES.search({
+        index: "plan",
+        body: {
+            query: {
+                match: {"objectId": searchText.trim()}
+            }
+        }
+    })
+    .then(response => {
+        return res.status(200).json(response)
     })
     .catch(err => {
         return res.status(500).json({"message": "Error"})
