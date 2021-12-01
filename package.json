@@ -1,0 +1,29 @@
+{
+  "name": "info7255_api",
+  "version": "1.0.0",
+  "description": "info7255 api",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon index.js",
+    "start": "node index.js"
+  },
+  "author": "Hung-Chih Huang",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "crypto": "^1.0.1",
+    "elasticsearch": "^16.7.2",
+    "etag": "^1.8.1",
+    "express": "^4.17.1",
+    "jsonschema": "^1.4.0",
+    "jsonwebtoken": "^8.5.1",
+    "nodeman": "^1.1.2",
+    "parse-duration": "^0.4.4",
+    "redis": "^3.0.2",
+    "request": "^2.88.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.13"
+  }
+}
